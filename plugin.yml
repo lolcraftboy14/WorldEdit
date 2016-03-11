@@ -1,0 +1,36 @@
+name: WorldEdit
+author: LDX
+version: 1.0a
+main: LDX\WorldEdit\Main
+load: POSTWORLD
+api: 2.0.0
+website: "https://github.com/LDX-MCPE/WorldEdit"
+commands:
+  /:
+    description: "View available WorldEdit commands."
+    usage: "//"
+    permission: worldedit.command
+    aliases:
+      - /togglewand
+      - /toggleeditwand
+      - /copy
+      - /cut
+      - /paste
+      - /hsphere
+      - /sphere
+      - /wand
+      - /limit
+      - /desel
+      - /pos1
+      - /pos2
+      - /set
+      - /replace
+      - /help
+permissions:
+  worldedit:
+    description: "Allows access to all WorldEdit features."
+    default: false
+    children:
+      worldedit.command:
+        default: op
+        description: "Access required to use any WorldEdit commands."
