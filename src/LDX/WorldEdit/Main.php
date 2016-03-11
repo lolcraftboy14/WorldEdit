@@ -12,12 +12,31 @@ use pocketmine\event\player\PlayerInteractEvent;
 
 class Main extends PluginBase implements CommandExecutor, Listener {
 
+  $commands = [
+                ["/copy", "Copies the current selection.", false],
+                ["/cut", "Copies and removes the current selection.", false],
+                ["/paste", "Pastes what's on your clipboard.", false],
+                ["/sphere", "Creates a sphere.", false],
+                ["/hsphere", "Creates a hollow sphere.", false]
+              ];
+
   public function onEnable() {
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
   }
 
   public function onCommand(CommandSender $player, Command $command, $label, array $args) {
-    $player->sendMessage($label); // Test
+    if(!($player instanceof Player)) {
+      $player->sendMessage("§cCommand must be used in-game.");
+      return true;
+    }
+    switch(strtolower($label)) {
+      case "/":
+      case "/help":
+        
+      break;
+      default:
+        $player->sendMessage("§cThis command hasn't been added yet.");
+    }
     return true;
   }
 
