@@ -9,13 +9,14 @@ commands:
   /:
     description: "View available WorldEdit commands."
     usage: "//"
-    permission: worldedit.command
+    permission: worldedit.command.use
     aliases:
       - /togglewand
       - /toggleeditwand
       - /copy
       - /cut
       - /paste
+      - /undo
       - /hsphere
       - /sphere
       - /wand
@@ -32,5 +33,9 @@ permissions:
     default: false
     children:
       worldedit.command:
-        default: op
-        description: "Access required to use any WorldEdit commands."
+        default: false
+        description: "Allows access to all WorldEdit commands."
+        children:
+          worldedit.command.use:
+            default: op
+            description: "Required to use any WorldEdit commands."
