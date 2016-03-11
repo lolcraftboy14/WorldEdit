@@ -18,12 +18,14 @@ class Main extends PluginBase implements CommandExecutor, Listener {
     ["/paste", "Pastes what's on your clipboard.", "worldedit.command.paste", false],
     ["/help [page]", "Shows the WorldEdit help.", "worldedit.command.help", true],
     ["/undo", "Reverts your last action.", "worldedit.command.undo", false],
-    ["/sphere", "Creates a sphere.", "worldedit.command.sphere", false],
-    ["/hsphere", "Creates a hollow sphere.", "worldedit.command.hsphere", false],
+    ["/sphere <block> <radius>", "Creates a sphere.", "worldedit.command.sphere", true],
+    ["/hsphere <block> <radius>", "Creates a hollow sphere.", "worldedit.command.hsphere", true],
     ["/limit <blocks>", "Sets the maximum amount of blocks which can be changed at once.", "worldedit.command.limit", false],
     ["/desel", "Deselects the current selection.", "worldedit.command.desel", false],
     ["/pos1", "Selects your first position.", "worldedit.command.pos1", false],
-    ["/pos2", "Selects your second position.", "worldedit.command.pos2", false]
+    ["/pos2", "Selects your second position.", "worldedit.command.pos2", false],
+    ["/set", "Fills the current selection.", "worldedit.command.set", false],
+    ["/replace", "Replaces the specified blocks in the current sekection.", "worldedit.command.replace", false]
   ];
 
   public function onEnable() {
@@ -35,7 +37,18 @@ class Main extends PluginBase implements CommandExecutor, Listener {
       $player->sendMessage("§cCommand must be used in-game.");
       return true;
     }
+    $filled = true;
     switch(strtolower($label)) {
+      case "/hsphere":
+        $filled = false;
+      case "/sphere":
+        if(!isset($args[0]) || !isset($args[1])) {
+          $player->sendMessage("§cUsage: /$label <block> <radius>");
+          break;
+        }
+        
+        $radius = abs(floatval($args[1]));
+        break;
       case "/":
       case "/help":
         $max = 5;
