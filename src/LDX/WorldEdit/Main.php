@@ -66,7 +66,7 @@ class Main extends PluginBase implements CommandExecutor, Listener {
       default:
         $player->sendMessage("§cThis command hasn't been added yet.");
     }
-    return true;
+    return false;
   }
 
   public function onPlayerInteract(PlayerInteractEvent $event) {
@@ -95,7 +95,7 @@ class Main extends PluginBase implements CommandExecutor, Listener {
         return true;
       }
     }
-    return false;
+    return true;
   }
 
 }
