@@ -30,10 +30,10 @@ commands:
 permissions:
   worldedit:
     description: "Allows access to all WorldEdit features."
-    default: false
+    default: true
     children:
       worldedit.command:
-        default: false
+        default: true
         description: "Allows access to all WorldEdit commands."
         children:
           worldedit.command.use:
